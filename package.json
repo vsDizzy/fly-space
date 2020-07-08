@@ -1,0 +1,13 @@
+{
+  "name": "node-app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "tsc -w"
+  },
+  "dependencies": {
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.6"
+  },
+  "devDependencies": {}
+}
