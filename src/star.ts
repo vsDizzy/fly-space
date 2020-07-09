@@ -6,8 +6,17 @@ export class Star {
   y: number;
   z: number;
 
+  reset() {
+    this.x = Math.random() * width - width / 2;
+    this.y = Math.random() * height - height / 2;
+    this.z = Math.random() * maxZ;
+  }
+
   update() {
-    this.z -= 1;
+    this.z -= 8;
+    if (this.z < 1) {
+      this.reset();
+    }
   }
 
   draw() {
@@ -15,7 +24,7 @@ export class Star {
     const sy = (this.y / this.z) * maxZ;
 
     ctx.beginPath();
-    ctx.arc(sx, sy, 4, 0, 2 * Math.PI);
+    ctx.arc(sx, sy, 2, 0, 2 * Math.PI);
     ctx.fill();
     ctx.closePath();
   }

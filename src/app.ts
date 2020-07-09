@@ -8,15 +8,12 @@ ctx.fillStyle = '#ffffff';
 
 beam(new Vector(50, 50), new Vector(550, 550), 30, 50);
 
-const stars = new Array<Star>(300);
+const stars = new Array<Star>(500);
 export const maxZ = Math.max(width, height);
 for (let i = 0; i < stars.length; i++) {
   const s = new Star();
   stars[i] = s;
-
-  s.x = Math.random() * width - width / 2;
-  s.y = Math.random() * height - height / 2;
-  s.z = maxZ;
+  s.reset();
 }
 
 requestAnimationFrame(draw);
