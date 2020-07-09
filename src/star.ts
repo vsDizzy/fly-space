@@ -1,4 +1,4 @@
-import { ctx, width, height } from './app.js';
+import { width, height } from './app.js';
 import { maxZ, speed } from './app.js';
 import { beam } from './beam.js';
 import { Vector } from './vector.js';
@@ -25,6 +25,9 @@ export class Star {
     if (this.z < 1) {
       this.reset();
     }
+    if (this.z > maxZ * 3) {
+      this.reset();
+    }
   }
 
   draw() {
@@ -33,14 +36,8 @@ export class Star {
 
     const r1 = maxZ / this.z;
 
-    if (this.pr) {
-      beam(new Vector(sx, sy), new Vector(this.px, this.py), r1, this.pr);
-    } else {
-      ctx.beginPath();
-      ctx.arc(sx, sy, r1, 0, 2 * Math.PI);
-      ctx.fill();
-      ctx.closePath();
-    }
+    const s = new Vector(sx, sy);
+    beam(s, this.pr ? new Vector(this.px, this.py) : s, r1, this.pr);
 
     this.px = sx;
     this.py = sy;

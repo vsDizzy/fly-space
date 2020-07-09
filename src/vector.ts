@@ -4,7 +4,7 @@ export class Vector {
   }
 
   get unit() {
-    return this.mul(1 / this.length);
+    return this.mul(this.length ? 1 / this.length : 0);
   }
 
   constructor(public readonly x: number, public readonly y: number) {}

@@ -6,15 +6,22 @@ export const ctx = cv.getContext('2d');
 export const width = cv.width;
 export const height = cv.height;
 
-export const speed = 8;
+export let speed: number;
 export const maxZ = Math.max(width, height);
 
 const spEl = document.getElementById('speed') as HTMLInputElement;
+spEl.addEventListener('change', () => {
+  let val = parseInt(spEl.value);
+  speed = val;
+});
+spEl.dispatchEvent(new Event('change'));
 
 window.addEventListener('wheel', (ev) => {
   let val = parseInt(spEl.value);
-  val += Math.sign(ev.deltaY) * speed;
+  val += -Math.sign(ev.deltaY) * 8;
+
   spEl.value = val.toString();
+  spEl.dispatchEvent(new Event('change'));
 });
 
 ctx.translate(width / 2, height / 2);
@@ -43,5 +50,7 @@ function draw(ts: DOMHighResTimeStamp) {
     s.draw();
   }
 
-  requestAnimationFrame(draw);
+  setTimeout(() => {
+    requestAnimationFrame(draw);
+  }, 0);
 }
