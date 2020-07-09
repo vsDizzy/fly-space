@@ -1,15 +1,24 @@
-import { ctx, width, height } from './ctx.js';
-import { beam } from './beam.js';
-import { Vector } from './vector.js';
 import { Star } from './star.js';
+
+const cv = document.getElementById('canvas') as HTMLCanvasElement;
+export const ctx = cv.getContext('2d');
+
+export const width = cv.width;
+export const height = cv.height;
 
 export const speed = 8;
 export const maxZ = Math.max(width, height);
 
+const spEl = document.getElementById('speed') as HTMLInputElement;
+
+window.addEventListener('wheel', (ev) => {
+  let val = parseInt(spEl.value);
+  val += Math.sign(ev.deltaY) * speed;
+  spEl.value = val.toString();
+});
+
 ctx.translate(width / 2, height / 2);
 ctx.fillStyle = '#ffffff';
-
-beam(new Vector(50, 50), new Vector(550, 550), 30, 50);
 
 const stars = new Array<Star>(500);
 for (let i = 0; i < stars.length; i++) {

@@ -1,4 +1,4 @@
-import { ctx } from './ctx.js';
+import { ctx } from './app.js';
 import { Vector } from './vector.js';
 
 export function beam(start: Vector, end: Vector, s1: number, s2: number) {
