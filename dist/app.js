@@ -2,11 +2,12 @@ import { ctx, width, height } from './ctx.js';
 import { beam } from './beam.js';
 import { Vector } from './vector.js';
 import { Star } from './star.js';
+export const speed = 8;
+export const maxZ = Math.max(width, height);
 ctx.translate(width / 2, height / 2);
 ctx.fillStyle = '#ffffff';
 beam(new Vector(50, 50), new Vector(550, 550), 30, 50);
 const stars = new Array(500);
-export const maxZ = Math.max(width, height);
 for (let i = 0; i < stars.length; i++) {
     const s = new Star();
     stars[i] = s;
